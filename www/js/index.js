@@ -61,7 +61,7 @@ var app = {
     }
  
  
-    fail: function(evt) {
+    failDownloadz: function(evt) {
         console.log(evt.target.error.code);
     }
 };
