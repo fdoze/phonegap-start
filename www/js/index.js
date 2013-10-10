@@ -34,7 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        app.showlink('speck.html');
+        app.downloadFile();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -57,6 +57,40 @@ var app = {
         aElem.setAttribute("href", url);
         aElem.appendChild(document.createTextNode("Ready! Click To Open."));
         divEl.appendChild(aElem);
+    },
+    downloadFile: function(){
+        window.requestFileSystem(
+                     LocalFileSystem.PERSISTENT, 0, 
+                     function onFileSystemSuccess(fileSystem) {
+                     fileSystem.root.getFile(
+                                 "dummy.html", {create: true, exclusive: false}, 
+                                 function gotFileEntry(fileEntry){
+                                 var sPath = fileEntry.fullPath.replace("dummy.html","");
+                                 var fileTransfer = new FileTransfer();
+                                 fileEntry.remove();
+ 
+                                 fileTransfer.download(
+                                           "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
+                                           sPath + "theFile.pdf",
+                                           function(theFile) {
+                                           console.log("download complete: " + theFile.toURI());
+                                           app.showLink(theFile.toURI());
+                                           },
+                                           function(error) {
+                                           console.log("download error source " + error.source);
+                                           console.log("download error target " + error.target);
+                                           console.log("upload error code: " + error.code);
+                                           }
+                                           );
+                                 }, 
+                                 fail);
+                     }, 
+                     fail);
+ 
+    },
+    
+    fail: function(evt) {
+        console.log(evt.target.error.code);
     }
 
 };
