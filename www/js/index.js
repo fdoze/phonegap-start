@@ -51,7 +51,7 @@ var app = {
       
     showLink: function(url) {
         alert(url);
-        var divEl = document.getElementById("ready");
+        var divEl = document.getElementById("download");
         var aElem = document.createElement("a");
         aElem.setAttribute("target", "_blank");
         aElem.setAttribute("href", url);
