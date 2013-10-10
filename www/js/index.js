@@ -49,19 +49,14 @@ var app = {
     }
       
  
-    showLink: function(url){
+    showLink: function(url) {
         alert(url);
         var divEl = document.getElementById("ready");
         var aElem = document.createElement("a");
         aElem.setAttribute("target", "_blank");
         aElem.setAttribute("href", url);
-        aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+        aElem.appendChild(document.createTextNode("Ready! Click To Open."));
         divEl.appendChild(aElem);
- 
     }
- 
- 
-    failDownloadz: function(evt) {
-        console.log(evt.target.error.code);
-    }
+
 };
