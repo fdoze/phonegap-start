@@ -59,6 +59,7 @@ var app = {
         divEl.appendChild(aElem);
     },
     downloadFile: function(){
+        alert('download file, yeah!');
         window.requestFileSystem(
                      LocalFileSystem.PERSISTENT, 0, 
                      function onFileSystemSuccess(fileSystem) {
@@ -74,6 +75,8 @@ var app = {
                                            sPath + "theFile.pdf",
                                            function(theFile) {
                                            console.log("download complete: " + theFile.toURI());
+                                            alert("download complete: " + theFile.toURI());
+
                                            app.showLink(theFile.toURI());
                                            },
                                            function(error) {
