@@ -6,7 +6,7 @@
         id        = "com.grdd.testdownload"
         version   = "1.0.0">
 
-    <name>Roulette Bets Aid</name>
+    <name>Roulette Aid</name>
 
     <description>
         Hello World sample application that responds to the deviceready event.
